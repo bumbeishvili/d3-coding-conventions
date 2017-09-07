@@ -9,7 +9,7 @@
    - layouts
    - functions
 1. [Indentations & Formatting ](#indentations-and-formatting)
-1. Commenting
+1. [Commenting](#commenting)
 1. Patterns
 1. Responsivity
 
