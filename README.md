@@ -77,7 +77,7 @@ we have 3 kind of comments
  
  ok, here is example of code, which contains all type of comments
  
- ```
+ ```javascript
  //#########################  SCALES  ########################
 var scales = {};
 scales.barWidth = d3.scaleLinear()
