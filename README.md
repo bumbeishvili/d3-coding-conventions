@@ -14,6 +14,7 @@
 1. [Indentations & Formatting ](#indentations-and-formatting)
 1. [Commenting](#commenting)
 1. Patterns
+1. [Commit titles](#commit-titles)
 
 
 
@@ -214,4 +215,13 @@ svg.selectAll('.tick line').attr('transform', 'translate(40)')
      setDimensions();
   })
 ```
+
+## Commit titles
+Based on chart we are developing, commit message has following structure
+Chart Name - actual message
+
+for example, if we are developing bar chart and in cimmit we are adding code which draws bars,
+
+commit message would looks like:  
+`bar chart - draw bars`
 
