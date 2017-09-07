@@ -2,16 +2,19 @@
 
 
 1. Boilerplate Explanations
+   - main function name
    - attrs
    - calc
    - behaviors
    - scales
    - layouts
    - functions
+   - invokation
+   - [Responsivity](#responsivity)
 1. [Indentations & Formatting ](#indentations-and-formatting)
 1. [Commenting](#commenting)
 1. Patterns
-1. Responsivity
+
 
 
 
@@ -184,3 +187,31 @@ svg.selectAll('.tick line').attr('transform', 'translate(40)')
   .attr('stroke', attrs.gridColor)
   .attr('stroke-width', attrs.gridWidth)
  ```
+ 
+ # Responsivity
+ In order, charts to be responsive, we are doing following :
+
+1. we are setting an `id` property in `attrs` object
+ ```javascript
+    var attrs = {
+      id: 'id' + Math.floor((Math.random() * 1000000))
+    }
+ ```
+2. changing width based on containers width and redrawing chart, if necessary, updating other `attrs` properties too
+```javascript
+ function setDimensions() {
+        var width = container.node().getBoundingClientRect().width;
+        main.svgWidth(width);
+        
+        // if width is too small, change attrs.fontSize too e.t.c
+        container.call(main);
+ }
+```
+
+3. adding named listener to te `resize` event and redrawing chart
+```jaavascript
+  d3.select(window).on('resize.' + attrs.id, function () {
+     setDimensions();
+  })
+```
+
