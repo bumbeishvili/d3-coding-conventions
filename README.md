@@ -1,8 +1,8 @@
 # d3-coding-patterns
 
 
-1. Boilerplate Explanations
-   - main function name
+1. [Boilerplate Explanations](#boilerplate-explanations)
+   - [main function name](#main-function-name)
    - attrs
    - calc
    - behaviors
@@ -17,9 +17,43 @@
 1. [Commit Messages](#commit-messages)
 
 
+# Boilerplate Explanations
 
+## Main Function Name 
+In the boilerplate main function name is `renderChart`, but if we want to display multiple charts in the same page, based on our boilerplate, we should rename it accordingly
 
-## Indentations And Formatting
+if we are developing pie chart , name function as `renderPieChart`.
+
+if we are developing bar chart , name function as `renderBarChart`
+
+##  Responsivity
+ In order, charts to be responsive, we are doing following :
+
+1. we are setting an `id` property in `attrs` object
+ ```javascript
+    var attrs = {
+      id: 'id' + Math.floor((Math.random() * 1000000))
+    }
+ ```
+2. changing width based on containers width and redrawing chart, if necessary, updating other `attrs` properties too
+```javascript
+ function setDimensions() {
+        var width = container.node().getBoundingClientRect().width;
+        main.svgWidth(width);
+        
+        // if width is too small, change attrs.fontSize too e.t.c
+        container.call(main);
+ }
+```
+
+3. adding named listener to te `resize` event and redrawing chart
+```jaavascript
+  d3.select(window).on('resize.' + attrs.id, function () {
+     setDimensions();
+  })
+```
+
+# Indentations And Formatting
   We will use default IDE formatter, for visual studio code, it's `cmd+shift+f` for mac and `alt+shift+f` for windows , apart from that, we will use two spaces after each nested statement
 
 for example  
@@ -49,7 +83,7 @@ var quarterFormatTexts = quarterTextGroup.selectAll(".quarter-format-text")
 ```
 
 
-## commenting 
+# commenting 
 
 we have 3 kind of comments
 1. Block Comments
@@ -189,34 +223,9 @@ svg.selectAll('.tick line').attr('transform', 'translate(40)')
   .attr('stroke-width', attrs.gridWidth)
  ```
  
- # Responsivity
- In order, charts to be responsive, we are doing following :
 
-1. we are setting an `id` property in `attrs` object
- ```javascript
-    var attrs = {
-      id: 'id' + Math.floor((Math.random() * 1000000))
-    }
- ```
-2. changing width based on containers width and redrawing chart, if necessary, updating other `attrs` properties too
-```javascript
- function setDimensions() {
-        var width = container.node().getBoundingClientRect().width;
-        main.svgWidth(width);
-        
-        // if width is too small, change attrs.fontSize too e.t.c
-        container.call(main);
- }
-```
 
-3. adding named listener to te `resize` event and redrawing chart
-```jaavascript
-  d3.select(window).on('resize.' + attrs.id, function () {
-     setDimensions();
-  })
-```
-
-## Commit messages
+# Commit messages
 Based on chart we are developing, commit message has following structure
 Chart Name - actual message
 
