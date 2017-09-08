@@ -14,7 +14,7 @@
 1. [Indentations & Formatting ](#indentations-and-formatting)
 1. [Commenting](#commenting)
 1. Patterns
-1. [Commit titles](#commit-titles)
+1. [Commit Messages](#commit-messages)
 
 
 
@@ -216,7 +216,7 @@ svg.selectAll('.tick line').attr('transform', 'translate(40)')
   })
 ```
 
-## Commit titles
+## Commit messages
 Based on chart we are developing, commit message has following structure
 Chart Name - actual message
 
