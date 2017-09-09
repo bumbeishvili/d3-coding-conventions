@@ -3,7 +3,7 @@
 
 1. [Boilerplate Explanations](#boilerplate-explanations)
    - [main function name](#main-function-name)
-   - attrs
+   - [attrs](#attrs)
    - calc
    - behaviors
    - scales
@@ -25,6 +25,95 @@ In the boilerplate main function name is `renderChart`, but if we want to displa
 if we are developing pie chart , name function as `renderPieChart`.
 
 if we are developing bar chart , name function as `renderBarChart`
+
+## attrs
+ We group hardcoded items (colors for example, also margins ...) using `attrs` object. If we are using any hardcoded item in the code, that is mistake. 
+  Good Points:
++ prevents dublication
++ makes easy to apply changes from one place
++ these properties are transformed to dinamic functions and we can override attributes from outside
+
+
+simple `attrs` object looks like this
+```javascript
+  // exposed variables
+  var attrs = {
+    svgWidth: 400,
+    svgHeight: 400,
+    marginTop: 5,
+    marginBottom: 5,
+    marginRight: 5,
+    marginLeft: 5,
+    container: 'body',
+    data: null
+  };
+```
+
+but as we go forward, it gets more properties
+```javascript
+ var attrs = {
+    id: 'id' + Math.floor((Math.random() * 1000000)),
+    svgWidth: 1000,
+    svgHeight: 800,
+    minWindowWidth : 800,
+    marginTop: 50,
+    marginBottom: 50,
+    marginRight: 50,
+    marginLeft: 50,
+    container: 'body',
+    firstTime: true,
+    data: null,
+    spacing: {
+      bar: 2,
+      unit: 30,
+      category: 3
+    },
+    slicesOpacity: 0.3,
+    colors: {
+      point: "grey",
+      fullname: "#4B4948",
+      offline: "grey",
+      online: "lightgreen",
+      categorytext: "",
+      unitslegend: "#4B4948",
+    },
+    tooltipRows: [{ left: "User", right: "{fullname}" },
+    { left: "Blitz", right: "{blitzrating}" },
+    { left: "Bullet", right: "{bulletrating}" },
+    { left: "Classical", right: "{classicalrating}" },
+    { left: "Unit", right: "{unit}" }]
+  };
+  ```
+  
+  as we mentioned `attrs` objects are transformed to dinamic functions using this code
+```javascript
+ //dinamic functions
+  Object.keys(attrs).forEach(key => {
+    // Attach variables to main function
+    return main[key] = function (_) {
+      var string = `attrs['${key}'] = _`;
+      if (!arguments.length) { return eval(` attrs['${key}'];`); }
+      eval(string);
+      return main;
+    };
+  });
+```
+
+so we can use chart reference directly to set  or get attribute properties
+```javascript
+//get chart reference
+chart = renderChart();
+   
+// attribute setting
+chart.svgHeight(window.innerHeight - 30)
+  .svgWidth(window.innerWidth - 30)
+  .container('#myGraph')
+  .data(data)
+  
+//to get value of attrs property, don't pass param to it
+var marginLeft = chart.marginLeft();
+var container = chart.container();
+```
 
 ##  Responsivity
  In order, charts to be responsive, we are doing following :
