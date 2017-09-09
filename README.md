@@ -4,12 +4,13 @@
 1. [Boilerplate Explanations](#boilerplate-explanations)
    - [main function name](#main-function-name)
    - [attrs](#attrs)
-   - calc
+   - [calc](#calc)
    - behaviors
    - scales
    - layouts
    - functions
    - invokation
+   - debugging
    - [Responsivity](#responsivity)
 1. [Indentations & Formatting ](#indentations-and-formatting)
 1. [Commenting](#commenting)
@@ -114,6 +115,22 @@ chart.svgHeight(window.innerHeight - 30)
 var marginLeft = chart.marginLeft();
 var container = chart.container();
 ```
+
+## calc
+for calculated properties we have `calc` object. 
+
+**example**
+```javascript
+  //calculated properties
+  var calc = {}
+  calc.chartLeftMargin = attrs.marginLeft;
+  calc.chartTopMargin = attrs.marginTop;
+  calc.chartWidth = attrs.svgWidth - attrs.marginRight - calc.chartLeftMargin;
+  calc.chartHeight = attrs.svgHeight - attrs.marginBottom - calc.chartTopMargin;
+```
+
+
+
 
 ##  Responsivity
  In order, charts to be responsive, we are doing following :
