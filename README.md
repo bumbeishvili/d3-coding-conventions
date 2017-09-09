@@ -5,7 +5,7 @@
    - [main function name](#main-function-name)
    - [attrs](#attrs)
    - [calc](#calc)
-   - behaviors
+   - [behaviors](#behaviors)
    - scales
    - layouts
    - functions
@@ -129,6 +129,15 @@ for calculated properties we have `calc` object.
   calc.chartHeight = attrs.svgHeight - attrs.marginBottom - calc.chartTopMargin;
 ```
 
+## behaviors
+behaviors comes from **d3.v3** ,although it was removed in **d3.v4**, we still use it for grouping purposes in commenting section.
+
+so, there are only two behaviors: [zoom](https://github.com/d3/d3-zoom) and [drag](https://github.com/d3/d3-drag), if we have to use each one, we create them  under **behaviors** group comment section
+```javascript
+/*##################################   BEHAVIORS ####################################### */
+var behaviors = {};
+behaviors.zoom = d3.zoom().on("zoom", d => handlers.zoomed(d));
+```
 
 
 
