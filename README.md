@@ -1,4 +1,7 @@
+
+
 # d3-coding-patterns
+This is short and **veeeery subjective** convention of coding with d3.js. 
 
 
 1. [Boilerplate Explanations](#boilerplate-explanations)
@@ -19,6 +22,11 @@
 
 
 # Boilerplate Explanations
+I have tried to merge all best conventions and standarts in one boilerplate ... 
+* [Towards reusable charts](https://bost.ocks.org/mike/chart/)
+* [Towards updatable code](https://www.toptal.com/d3-js/towards-reusable-d3-js-charts)
+* and some things from personal experience 
+
 
 ## Main Function Name 
 In the boilerplate main function name is `renderChart`, but if we want to display multiple charts in the same page, based on our boilerplate, we should rename it accordingly
