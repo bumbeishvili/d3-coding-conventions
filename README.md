@@ -7,7 +7,7 @@
    - [calc](#calc)
    - [behaviors](#behaviors)
    - scales
-   - layouts
+   - [layouts](#layouts)
    - functions
    - invokation
    - debugging
@@ -139,7 +139,26 @@ var behaviors = {};
 behaviors.zoom = d3.zoom().on("zoom", d => handlers.zoomed(d));
 ```
 
+## layouts
+layouts, as behaviors, comes from d3.v3 and removed from d3.v4. We use layouts in group comment section
 
+there are following layouts:
++ d3.chord()
++ d3.pie()
++ d3.hierarchy()
++ d3.histogram()
++ d3.pack()
++ d3.partition()
++ d3.stack()
++ d3.tree()
++ d3.treeMap()
+
+if we have to use one of them, then we have to group them with group comment as well
+```javascript
+//#########################  LAYOUTS  ########################
+var layouts = {};
+layouts.pie = d3.pie().value(function (d) { return d[attrs.currentProp] }).sort(null);
+```
 
 ##  Responsivity
  In order, charts to be responsive, we are doing following :
