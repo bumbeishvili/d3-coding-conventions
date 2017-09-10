@@ -9,7 +9,7 @@ This is short and **veeeery subjective** convention of coding with d3.js.
    - [attrs](#attrs)
    - [calc](#calc)
    - [behaviors](#behaviors)
-   - scales
+   - [scales](#scales)
    - [layouts](#layouts)
    - functions
    - invokation
@@ -146,6 +146,21 @@ so, there are only two behaviors: [zoom](https://github.com/d3/d3-zoom) and [dra
 var behaviors = {};
 behaviors.zoom = d3.zoom().on("zoom", d => handlers.zoomed(d));
 ```
+
+## scales
+scales are one of the main parts of d3.js, so it deserves to have own group
+
+```javascript
+/*##################################   SCALES  ####################################### */
+ var scales = {}
+ scales.x = d3.scaleLinear()
+   .domain([0, attrs.data.values[0].lines.length - 1]) // input
+   .range([0, calc.chartWidth]);
+ scales.y = d3.scaleLinear()
+   .domain([0, maxLineValue(attrs.data) + 2])
+   .range([calc.chartHeight, 0]);
+```
+
 
 ## layouts
 layouts, as behaviors, comes from d3.v3 and removed from d3.v4. We use layouts in group comment section
