@@ -11,7 +11,7 @@ This is short and **veeeery subjective** convention of coding with d3.js.
    - [behaviors](#behaviors)
    - [scales](#scales)
    - [layouts](#layouts)
-   - functions
+   - [functions](#functions)
    - invokation
    - debugging
    - [Responsivity](#responsivity)
@@ -182,6 +182,13 @@ if we have to use one of them, then we have to group them with group comment as 
 var layouts = {};
 layouts.pie = d3.pie().value(function (d) { return d[attrs.currentProp] }).sort(null);
 ```
+
+## functions
+at the end of main function's body we write helper functions (for example, long label wrapping, tooltip drawing func and e.t.c. )
+
+
+
+It's possible to group functions with sub-group comments as well
 
 ##  Responsivity
  In order, charts to be responsive, we are doing following :
