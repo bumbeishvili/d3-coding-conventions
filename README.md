@@ -31,19 +31,21 @@ I have tried to merge all best conventions and standarts in one boilerplate ...
 ## Main Function Name 
 In the boilerplate main function name is `renderChart`, but if we want to display multiple charts in the same page, based on our boilerplate, we should rename it accordingly
 
-if we are developing pie chart , name function as `renderPieChart`.
+If we are developing pie chart , name function as `renderPieChart`.
 
-if we are developing bar chart , name function as `renderBarChart`
+If we are developing bar chart , name function as `renderBarChart`
 
 ## attrs
  We group hardcoded items (colors for example, also margins ...) using `attrs` object. If we are using any hardcoded item in the code, that is mistake. 
+ 
+ 
   Good Points:
-+ prevents dublication
-+ makes easy to apply changes from one place
-+ these properties are transformed to dynamic functions and we can override attributes from outside
++ Prevents dublication
++ Makes easy to apply changes from one place
++ These properties are transformed to dynamic functions and we can override attributes from outside
 
 
-simple `attrs` object looks like this
+Simple `attrs` object looks like this
 ```javascript
   // exposed variables
   var attrs = {
@@ -58,7 +60,7 @@ simple `attrs` object looks like this
   };
 ```
 
-but as we go forward, it gets more properties
+But, as we go forward, it gets more properties:
 ```javascript
  var attrs = {
     id: 'id' + Math.floor((Math.random() * 1000000)),
@@ -94,7 +96,7 @@ but as we go forward, it gets more properties
   };
   ```
   
-  as we mentioned `attrs` objects are transformed to dynamic functions using this code
+ As we mentioned `attrs` objects are transformed to dinamic functions using this code
 ```javascript
  //dinamic functions
   Object.keys(attrs).forEach(key => {
@@ -108,7 +110,7 @@ but as we go forward, it gets more properties
   });
 ```
 
-so we can use chart reference directly to set  or get attribute properties
+So we can use chart reference directly to set  or get attribute properties
 ```javascript
 //get chart reference
 chart = renderChart();
@@ -125,7 +127,7 @@ var container = chart.container();
 ```
 
 ## calc
-for calculated properties we have `calc` object. 
+For calculated properties we have `calc` object. 
 
 **example**
 ```javascript
@@ -138,9 +140,9 @@ for calculated properties we have `calc` object.
 ```
 
 ## behaviors
-behaviors comes from **d3.v3** ,although it was removed in **d3.v4**, we still use it for grouping purposes in commenting section.
+Behaviors comes from **d3.v3** ,although it was removed in **d3.v4**,but we still use it for grouping purposes in commenting section.
 
-so, there are only two behaviors: [zoom](https://github.com/d3/d3-zoom) and [drag](https://github.com/d3/d3-drag), if we have to use each one, we create them  under **behaviors** group comment section
+So, there are only two behaviors: [zoom](https://github.com/d3/d3-zoom) and [drag](https://github.com/d3/d3-drag), if we have to use one og them , we make them appear  under **behaviors** group comment section
 ```javascript
 /*##################################   BEHAVIORS ####################################### */
 var behaviors = {};
@@ -148,7 +150,7 @@ behaviors.zoom = d3.zoom().on("zoom", d => handlers.zoomed(d));
 ```
 
 ## scales
-scales are one of the main parts of d3.js, so it deserves to have own group
+Scales are one of the main parts of d3.js, so it deserves to have own group
 
 ```javascript
 /*##################################   SCALES  ####################################### */
@@ -163,7 +165,7 @@ scales are one of the main parts of d3.js, so it deserves to have own group
 
 
 ## layouts
-layouts, as behaviors, comes from d3.v3 and removed from d3.v4. We use layouts in group comment section
+Layouts, as behaviors, comes from d3.v3 and removed from d3.v4. We use layouts in group comment section
 
 there are following layouts:
 + d3.chord()
@@ -176,7 +178,7 @@ there are following layouts:
 + d3.tree()
 + d3.treeMap()
 
-if we have to use one of them, then we have to group them with group comment as well
+If we have to use one of them, then we have to group them with group comment as well
 ```javascript
 //#########################  LAYOUTS  ########################
 var layouts = {};
@@ -184,22 +186,22 @@ layouts.pie = d3.pie().value(function (d) { return d[attrs.currentProp] }).sort(
 ```
 
 ## functions
-at the end of main function's body we write helper functions (for example, long label wrapping, tooltip drawing func and e.t.c. )
+At the end of main functions body we write helper functions (for example, long label wrapping, tooltip drawing func and e.t.c. )
 
 
 
 It's possible to group functions with sub-group comments as well
 
 ##  Responsivity
- In order, charts to be responsive, we are doing following :
+ In order charts to be responsive, we are doing following :
 
-1. we are setting an `id` property in `attrs` object
+1. We are setting an `id` property in `attrs` object
  ```javascript
     var attrs = {
       id: 'id' + Math.floor((Math.random() * 1000000))
     }
  ```
-2. changing width based on containers width and redrawing chart, if necessary, updating other `attrs` properties too
+2. Changing width based on containers width and redrawing chart, if necessary, updating other `attrs` properties too
 ```javascript
  function setDimensions() {
         var width = container.node().getBoundingClientRect().width;
@@ -210,7 +212,7 @@ It's possible to group functions with sub-group comments as well
  }
 ```
 
-3. adding named listener to te `resize` event and redrawing chart
+3. Adding named listener to te `resize` event and redrawing chart
 ```jaavascript
   d3.select(window).on('resize.' + attrs.id, function () {
      setDimensions();
@@ -218,10 +220,18 @@ It's possible to group functions with sub-group comments as well
 ```
 
 # Indentations And Formatting
-  We will use default IDE formatter, for visual studio code, it's `cmd+shift+f` for mac and `alt+shift+f` for windows , apart from that, we will use two spaces after each nested statement
+  We will use default visual studio code IDE formatter:  
+  
+  For mac , it's `cmd+shift+f`   
+  
+  For windows  `alt+shift+f`  
+  
+  
+  apart from that, we will use two spaces after each nested statement  
+  
 
 for example  
-**instead of this**
+**Instead of this**
 ```javascript
 var quarterFormatTexts = quarterTextGroup.selectAll(".quarter-format-text")
     .data(attrs.data.bars)
@@ -249,7 +259,7 @@ var quarterFormatTexts = quarterTextGroup.selectAll(".quarter-format-text")
 
 # commenting 
 
-we have 3 kind of comments
+We have 3 kind of comments
 1. Block Comments
  ```javascript
  //#########################    BLOCK COMMENT WITH UPPERCASE   ######################
@@ -259,13 +269,13 @@ we have 3 kind of comments
  //-----------------    This Is Sub Block Comment With Camelcase   ------------------
  ``` 
  
-3. statement level comment
+3. Statement level comment
  ```javascript
  //this is statement level comment
  ```
  
  We are dividing code int blocks, sub blocks and statements.  
- **before comment should be left one blank line!**
+ **Before comment should be left one blank line!**
  **Each block, sub block and statement should be commented out!**
  
  I am repeating:  
@@ -277,7 +287,7 @@ we have 3 kind of comments
  One more time and we will continue :
  # Each block, sub block and statement should be commented out and before comment one blank line should be left !
  
- ok, here is example of code, which contains all type of comments
+ Ok, here is example of code, which contains all type of comments
  
  ```javascript
  //#########################  SCALES  ########################
@@ -390,10 +400,11 @@ svg.selectAll('.tick line').attr('transform', 'translate(40)')
 
 
 # Commit messages
-Based on chart we are developing, commit message has following structure
+Based on chart we are developing, commit message has following structuren  
+
 Chart Name - actual message
 
-for example, if we are developing bar chart and in cimmit we are adding code which draws bars,
+For example, if we are developing bar chart and in cimmit we are adding code which draws bars,
 
 commit message would looks like:  
 `bar chart - draw bars`
