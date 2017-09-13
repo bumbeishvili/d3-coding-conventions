@@ -13,7 +13,7 @@ This is short and **veeeery subjective** convention of coding with d3.js.
    - [layouts](#layouts)
    - [functions](#functions)
    - [invokation](#invoking)
-   - debugging
+   - [debugging](#debugging)
    - [Responsivity](#responsivity)
 1. [Indentations & Formatting ](#indentations-and-formatting)
 1. [Commenting](#commenting)
@@ -229,7 +229,28 @@ var chart = renderChart()
 
 
 
+## debugging
 
+to turn on debugging are writting
+```javascript
+var chart = renderChart()
+              .debug(true)
+```
+
+After visual is drawn, we can type `charts` in the console, and we will get something like that :
+
+`[ƒ]` , it's array of chart references, if we expand it, we will see:
+
+```javascript
+P_axes:{y: ƒ, x: ƒ, line: ƒ}, // axes proeprty
+P_calc:{chartLeftMargin: 35, chartTopMargin: 20, chartWidth: 465, …} //calculated properties
+P_scales:{x: ƒ, y: ƒ, line: ƒ} //scales functions
+attrs:{svgWidth: 600, svgHeight: 350, marginTop: 20, marginBottom: 100, marginRight: 100, …}// attrs object
+data // data object
+e.t.c.
+```
+
+So, we have possibility to inspect some properties of chart and also directly invoke in the console some of the members functions (scales for example)
 
 
 ##  Responsivity
