@@ -22,6 +22,9 @@ This is short and **veeeery subjective** convention of coding with d3.js.
 
 
 # Boilerplate Explanations
+
+[d3.js default project starter boilerplate](https://github.com/bumbeishvili/d3js-boilerplates/tree/gh-pages/DefaultProjectStarter) explanation
+
 I have tried to merge all best conventions and standarts in one boilerplate ... 
 * [Towards reusable charts](https://bost.ocks.org/mike/chart/)
 * [Towards updatable code](https://www.toptal.com/d3-js/towards-reusable-d3-js-charts)
