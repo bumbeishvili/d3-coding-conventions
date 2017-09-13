@@ -12,7 +12,7 @@ This is short and **veeeery subjective** convention of coding with d3.js.
    - [scales](#scales)
    - [layouts](#layouts)
    - [functions](#functions)
-   - [invokation](#invokation)
+   - [invokation](#invoking)
    - debugging
    - [Responsivity](#responsivity)
 1. [Indentations & Formatting ](#indentations-and-formatting)
