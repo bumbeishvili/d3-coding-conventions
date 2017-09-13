@@ -12,7 +12,7 @@ This is short and **veeeery subjective** convention of coding with d3.js.
    - [scales](#scales)
    - [layouts](#layouts)
    - [functions](#functions)
-   - invokation
+   - [invokation](#invokation)
    - debugging
    - [Responsivity](#responsivity)
 1. [Indentations & Formatting ](#indentations-and-formatting)
@@ -99,35 +99,7 @@ But, as we go forward, it gets more properties:
   };
   ```
   
- As we mentioned `attrs` objects are transformed to dinamic functions using this code
-```javascript
- //dinamic functions
-  Object.keys(attrs).forEach(key => {
-    // Attach variables to main function
-    return main[key] = function (_) {
-      var string = `attrs['${key}'] = _`;
-      if (!arguments.length) { return eval(` attrs['${key}'];`); }
-      eval(string);
-      return main;
-    };
-  });
-```
-
-So we can use chart reference directly to set  or get attribute properties
-```javascript
-//get chart reference
-chart = renderChart();
-   
-// attribute setting
-chart.svgHeight(window.innerHeight - 30)
-  .svgWidth(window.innerWidth - 30)
-  .container('#myGraph')
-  .data(data)
-  
-//to get value of attrs property, don't pass param to it
-var marginLeft = chart.marginLeft();
-var container = chart.container();
-```
+ 
 
 ## calc
 For calculated properties we have `calc` object. 
@@ -192,8 +164,73 @@ layouts.pie = d3.pie().value(function (d) { return d[attrs.currentProp] }).sort(
 At the end of main functions body we write helper functions (for example, long label wrapping, tooltip drawing func and e.t.c. )
 
 
-
 It's possible to group functions with sub-group comments as well
+
+
+## invoking
+
+first we get chart reference
+
+```javascript
+var chart = renderChart();
+```
+Then we can set & modify some attributes, which are defined in attrs object
+
+```javascript
+// attribute setting
+chart.svgHeight(window.innerHeight - 30)
+  .svgWidth(window.innerWidth - 30)
+  .container('#myGraph')
+  .data(data)
+```
+
+
+As we mentioned `attrs` objects are transformed to dinamic functions.
+That happens using this code
+```javascript
+ //dinamic functions
+  Object.keys(attrs).forEach(key => {
+    // Attach variables to main function
+    return main[key] = function (_) {
+      var string = `attrs['${key}'] = _`;
+      if (!arguments.length) { return eval(` attrs['${key}'];`); }
+      eval(string);
+      return main;
+    };
+  });
+```
+
+So we can invoke any of attrs properties,from chart reference 
+```javascript
+chart.marginLeft(10);
+```
+
+We also can get current attribute values
+```javascript
+//to get value of attrs property, don't pass param to it
+var marginLeft = chart.marginLeft();
+var container = chart.container();
+```
+
+To draw chart, we using `run` function
+```javascript
+chart.run()
+```
+
+So, to sum up, all of previous methods can be chained up
+```javascript
+var chart = renderChart()
+  .svgWidth(window.innerWidth - 30)
+  .container('#myGraph')
+  .data(data)
+  .run()
+```
+
+
+
+
+
+
 
 ##  Responsivity
  In order charts to be responsive, we are doing following :
