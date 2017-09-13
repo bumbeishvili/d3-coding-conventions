@@ -40,7 +40,7 @@ if we are developing bar chart , name function as `renderBarChart`
   Good Points:
 + prevents dublication
 + makes easy to apply changes from one place
-+ these properties are transformed to dinamic functions and we can override attributes from outside
++ these properties are transformed to dynamic functions and we can override attributes from outside
 
 
 simple `attrs` object looks like this
@@ -94,7 +94,7 @@ but as we go forward, it gets more properties
   };
   ```
   
-  as we mentioned `attrs` objects are transformed to dinamic functions using this code
+  as we mentioned `attrs` objects are transformed to dynamic functions using this code
 ```javascript
  //dinamic functions
   Object.keys(attrs).forEach(key => {
