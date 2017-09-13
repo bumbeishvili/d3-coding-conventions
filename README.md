@@ -1,6 +1,6 @@
 
 
-# d3-coding-patterns
+# d3-coding-conventions
 This is short and **veeeery subjective** convention of coding with d3.js. 
 
 
