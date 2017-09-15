@@ -17,7 +17,7 @@ This is short and **veeeery subjective** convention of coding with d3.js.
    - [Responsivity](#responsivity)
 1. [Indentations & Formatting ](#indentations-and-formatting)
 1. [Commenting](#commenting)
-1. Patterns
+1. [Patterns](#patterns)
 1. [Commit Messages](#commit-messages)
 
 
@@ -458,7 +458,47 @@ svg.selectAll('.tick line').attr('transform', 'translate(40)')
   .attr('stroke-width', attrs.gridWidth)
  ```
  
+ 
+ # Patterns
+ 
+ We are using enter exit update pattern . Most of the time, it's a boring and writing same thing again and again. So, instead of writing same boring thing again and again, we will use function, which will help in other cases too.
+ 
+ function has following face :
+ ```javascript
+ //enter exit update pattern principle
+ function patternify(params) {
+   var container = params.container;
+   var selector = params.selector;
+   var elementTag = params.elementTag;
+   var data = params.data || [selector];
+   // pattern in action
+   var selection = container.selectAll('.' + selector).data(data)
+   selection.exit().remove();
+   selection = selection.enter().append(elementTag).merge(selection)
+   selection.attr('class', selector);
+   return selection;
+ }
 
+ ```
+ 
+ and we use it like that:
+```javascript
+ //add svg
+  var svg = patternify({ container: container, selector: 'svg-chart-container', elementTag: 'svg' })
+    .attr('width', attrs.svgWidth)
+    .attr('height', attrs.svgHeight)
+    .attr('overflow', 'visible')
+    .style('font-family', 'Helvetica')
+    .attr("viewBox", "0 0 " + attrs.svgWidth + " " + attrs.svgHeight)
+    .attr("preserveAspectRatio", "xMidYMid meet");
+```
+
+**what good things does it do?**
+1. It automatically sets classes and that makes easy to inspect elements inside chrome developer tools
+1. Reduces code size
+1. Reduces risk of missing important code part  (for example, I had cases, when I forgot to assign merged selection to the variable )
+1. It's reusable code, which means,that we can safely invoke same method for different data, and it will behave accordingly for new elements, for exited elements and for updated elements
+1. It helps us to understand enter, exit, update selections
 
 # Commit messages
 Based on chart we are developing, commit message has following structuren  
