@@ -252,6 +252,13 @@ e.t.c.
 
 So, we have possibility to inspect some properties of chart and also directly invoke in the console some of the members functions (scales for example)
 
+To make working above that, we need corresponding grouping object to be set empty object at the starts
+for examlpe
+```javascript
+var scales = {};  // this line is necessary to correctly parse code and get such objects context
+
+scales.x = y ...
+```
 
 ##  Responsivity
  In order charts to be responsive, we are doing following :
