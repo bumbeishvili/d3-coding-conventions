@@ -1,5 +1,7 @@
 
 
+[example usage](https://jsfiddle.net/c06dpvnj/)
+
 # d3-coding-conventions
 This is short and **veeeery subjective** convention of coding with d3.js. 
 
